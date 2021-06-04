@@ -1,0 +1,23 @@
+{% extends 'studentreg/base.html' %}
+
+{% block title %} edit page {% endblock %}
+
+
+ {% block body %}
+
+<p>Edit Post</p>
+
+<form action="" method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+
+{{form.as_p}}
+
+<button class="btn btn-primary" type="submit">Update Post</button>
+</form>
+
+<hr>
+
+<a href="{% url 'home' %}">Cancel</a>
+
+<a href="{% url 'generate' %}">dowload edit</a>
+ {% endblock %}

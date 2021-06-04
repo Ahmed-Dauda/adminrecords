@@ -1,0 +1,235 @@
+{% extends 'studentreg/base.html' %}
+
+{% block title %} home page {% endblock %}
+
+
+ {% block body %}
+ 
+ <div class="contener bg-primary text-white mt-4 d-flex bd-highlight cont">
+
+        <p class="flex-fill ">Students Attitude to Salat</p>
+        <p class="flex-fill ">Number of Records in Salat: {{activities.count }}</p>
+        <p class="flex-fill ">Welcome, {{ request.user }}</p>
+</div>
+
+<hr>
+
+<hr>
+<br>
+
+<div class="contener">
+<div class=" card card-boby">
+
+
+<table class="table">
+  
+
+    <thead >
+        <tr >
+            <th>
+           
+             Names 
+         
+            </th>
+
+            <th>
+             
+             Level 
+          
+            </th>
+            <th>
+             
+             Term
+          
+            </th>
+
+            <th>
+        
+            Week 
+         
+            </th>
+            <th>
+          
+            Attitudes
+       
+            <th>
+                
+            Monday 
+         
+            </th>
+
+            <th>
+              
+            Tuesday 
+           
+            </th>
+            <th>
+             
+            Wednesday 
+           
+            </th>
+
+            <th>
+              
+            Thursday 
+          
+            </th>
+            <th>
+                
+            Friday 
+        
+            </th>
+
+            <th>
+               
+            Saturday 
+           
+            </th>
+            <th>
+               
+            Sunday 
+           
+            </th>
+
+            <th>
+               
+           Date 
+           
+            </th>
+            <th>
+           
+           Total 
+           
+            </th>
+
+            <th>
+            
+            Grade
+           
+            </th>
+            <th>
+           
+          Edit post
+           
+            </th>
+
+            <th>
+             
+            Delete Post
+           
+            </th>
+        </tr>
+
+    </thead>
+
+    <div class="card-boby">
+    {% for activity in activities %}
+    <tbody>
+        <tr>
+        <td>
+         
+                {{ activity.names }} 
+           
+        </td>
+        <td>
+           
+                {{ activity.lavel }}
+            
+        </td>
+        <td>
+           
+                {{activity.term}}
+           
+        </td>
+        <td>
+           
+                {{ activity.week }}
+           
+        </td>
+        <td>
+           
+                {{ activity.attitudes }}
+          
+        </td>
+        <td>
+        
+                {{ activity.monday }}
+        
+        </td>
+        <td>
+            
+                {{ activity.tuesday }}
+            
+        </td>
+       
+        <td>
+            
+                {{ activity.wednesday }}
+          
+        </td>
+        <td>
+            
+                {{ activity.thursday }}
+          
+        </td>
+        <td>
+            
+                {{ activity.friday }}
+        
+        </td>
+        <td>
+            
+                {{ activity.saturday }}
+            
+        </td>
+        <td>
+           
+                {{ activity.sunday }}
+           
+        </td>
+        <td>
+           
+                {{ activity.pub_date }}
+          
+        </td>
+        <td>
+          
+                {{ activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday }}
+            
+        </td>
+        <td>
+           
+                Grade
+        
+        </td>
+        <td>
+          
+            <a href="{% url 'edit' activity.id %}">Edit </a> 
+
+        </td>
+        <td>
+           
+            <a href="{% url 'delete' activity.id %}">Delete </a>
+           
+      
+
+        </td>
+        </tr>
+        </div>
+    </tbody>
+
+    {% endfor %}
+
+</table>
+</div>
+</div>
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <button class="btn btn-primary">submit</button>
+</form>
+
+
+ {% endblock %}
+

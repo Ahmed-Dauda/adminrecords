@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>prep</title>
+
+        
+ <style>
+        @page{
+                size: a4 portrait;
+                
+        }
+        table{
+                border-collapse: collapse;
+                width: 100%;
+                table-layout: auto;
+        }
+        tr,td{
+                border: 1px solid black;
+               
+            
+        }
+        th{
+                text-align: center;
+                font-size: 1em;
+                background-color: burlywood;
+                padding-top: 15px;
+                
+               
+                
+                
+        }
+        td{
+                text-align: center;
+               
+        }
+        
+               
+</style>
+
+</head>
+<body>
+   
+        <div class="contener" >
+
+                <p class="flex-fill ">Students' Attitude </p>
+                <p class="flex-fill ">Number of Records in Students' Attitudes: {{activities.count }}</p>
+                <p class="flex-fill ">Welcome, {{ request.user }}</p>
+        </div>
+
+        <hr>
+        <div clss = "container">
+
+        <table class="tab ">
+                
+
+                <thead class="bg">
+                <tr >
+                        <th>
+                        
+                        Names 
+                        
+                        </th>
+
+                        <th>
+                        
+                        Class 
+                        
+                        </th>
+                        <th>
+                        
+                        Term
+                        
+                        </th>
+
+                        <th>
+                
+                        Week 
+                        
+                        </th>
+                        <th>
+                        
+                        Attitudes
+                
+                        <th>
+                        
+                        Mon
+                        
+                        </th>
+
+                        <th>
+                        
+                        Tue 
+                        
+                        </th>
+                        <th>
+                        
+                        Wed
+                        
+                        </th>
+
+                        <th>
+                        
+                        Thur 
+                        
+                        </th>
+                        <th>
+                        
+                        Fri
+                
+                        </th>
+
+                        <th>
+                        
+                        Sat
+                        
+                        </th>
+                        <th>
+                        
+                        Sun
+                        
+                        </th>
+
+                        <th>
+                        
+                        Date 
+                        
+                        </th>
+                        <th>
+                        
+                        Total 
+                        
+                        </th>
+
+                        <th>
+                        
+                        Grade
+                        
+                        </th>
+
+                        <th>
+                        
+                        Comments
+                        
+                        </th>
+                        
+                        
+                </tr>
+
+                </thead>
+
+                <div clss="card-boby">
+                {% for activity in activities %}
+                <tbody class="">
+                <tr>
+                <td clas="w-10">
+                        
+                        {{ activity.names }} 
+                        
+                </td>
+                <td clss="w-10">
+                        
+                        {{ activity.lavel }}
+                        
+                </td>
+                <td cass="w-10">
+                        
+                        {{activity.term}}
+                        
+                </td>
+                <td lass="w-10">
+                        
+                        {{ activity.week }}
+                        
+                </td>
+                <td cass="w-10">
+                        
+                        {{ activity.attitudes }}
+                        
+                </td>
+                <td lass="w-10">
+                
+                        {{ activity.monday }}
+                
+                </td>
+                <td cass="w-10">
+                        
+                        {{ activity.tuesday }}
+                        
+                </td>
+                
+                <td lass="w-10">
+                        
+                        {{ activity.wednesday }}
+                        
+                </td>
+                <td clas="w-10">
+                        
+                        {{ activity.thursday }}
+                        
+                </td>
+                <td>
+                        
+                        {{ activity.friday }}
+                
+                </td>
+                <td clss="w-10">
+                        
+                        {{ activity.saturday }}
+                        
+                </td>
+                <td cass="w-10">
+                        
+                        {{ activity.sunday  }} 
+                        
+                </td>
+                <td lass="w-10">
+                        
+                        {{ activity.pub_date }}
+                        
+                </td>
+                <td clas="w-10">
+                        
+                        {{ activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday }}/100
+                        
+                </td>
+                
+                <td clss="w-10">
+                {% if activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 70 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 100 %}
+                        
+                <p> A</p> 
+
+                {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 60 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 69 %}
+                        
+                <p> B</p> 
+
+                {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 50 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 59 %}
+                        
+                <p> C</p> 
+                
+                {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 45 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 49 %}
+                        
+                <p> D </p> 
+                
+                {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday %}
+                        
+                <p> F </p> 
+                
+                {% endif %}
+
+                </td>
+                
+                <td>
+                        {% if activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 70 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 100 %}
+                                
+                        <p> Distinction </p> 
+                
+                        {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 60 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 69 %}
+                                
+                        <p> Excellence</p> 
+                
+                        {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 50 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 59 %}
+                                
+                        <p> Credit</p> 
+                        
+                        {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 45 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 49 %}
+                                
+                        <p> Pass </p> 
+                        
+                        {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday %}
+                                
+                        <p> Fail </p> 
+                        
+                        {% endif %}
+                
+                        </td>
+                        
+                
+                
+                </tr>
+                </div>
+                </tbody>
+
+
+                
+                {% endfor %}
+
+        </table>
+           
+</div>
+
+</body>
+</html>
+
+ 
+
+
+
+

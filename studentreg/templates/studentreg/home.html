@@ -1,0 +1,328 @@
+{% extends 'studentreg/base.html' %}
+
+{% load mathfilters %}
+
+{% block title %} home page {% endblock %}
+
+
+ {% block body %}
+ <style>
+         th, td{
+                 border: 1px dotted black;
+         }
+         table{
+                 border-collapse: collapse;
+         }
+ </style>
+ <div class="contener bg-primary text-white  d-flex " style="width: 100%;">
+
+        <p class="flex-fill ">Students' Attitude </p>
+        <p class="flex-fill ">Number of Records in Students' Attitudes: {{activities.count }}</p>
+        <p class="flex-fill ">Welcome, {{ request.user }}</p>
+</div>
+
+<hr>
+<div class = "container d-flex">
+
+        <form action = "" method = "get" enctype="multipart/form-data" class = "d-flex">
+
+        {% csrf_token %}
+        
+        {{myfilter.form}}
+        
+        <button class = 'btn btn-primary'> Search Result </button> 
+
+        </form>
+
+        <hr>
+        </div>
+<hr>
+
+
+<div class ="container mb-5 mt-3">
+<div class = " card card-boby">
+
+
+<table class="table-md table-responsive ">
+  
+
+    <thead class="bg-primary text-white ">
+        <tr >
+            <th>
+           
+             Names 
+         
+            </th>
+
+            <th>
+             
+             Class 
+          
+            </th>
+            <th>
+             
+             Term
+          
+            </th>
+
+            <th>
+        
+            Week 
+         
+            </th>
+            <th>
+          
+            Attitudes
+       
+            <th>
+                
+            Mon
+         
+            </th>
+
+            <th>
+              
+            Tue 
+           
+            </th>
+            <th>
+             
+            Wed
+           
+            </th>
+
+            <th>
+              
+            Thur 
+          
+            </th>
+            <th>
+                
+            Fri
+        
+            </th>
+
+            <th>
+               
+            Sat
+           
+            </th>
+            <th>
+               
+            Sun
+           
+            </th>
+
+            <th>
+               
+           Date 
+           
+            </th>
+            <th>
+           
+           Total 
+           
+            </th>
+
+            <th>
+            
+            Grade
+           
+            </th>
+
+           <th>
+            
+            Comments
+               
+            </th>
+            <th>
+           
+          Edit post
+           
+            </th>
+
+            <th>
+             
+            Delete Post
+           
+            </th>
+        </tr>
+
+    </thead>
+
+    <div class="card-boby">
+    {% for activity in activities %}
+    <tbody class="">
+        <tr>
+        <td class="w-10">
+         
+                {{ activity.names }} 
+           
+        </td>
+        <td class="w-10">
+           
+                {{ activity.lavel }}
+            
+        </td>
+        <td class="w-10">
+           
+                {{activity.term}}
+           
+        </td>
+        <td class="w-10">
+           
+                {{ activity.week }}
+           
+        </td>
+        <td class="w-10">
+           
+                {{ activity.attitudes }}
+          
+        </td>
+        <td class="w-10">
+        
+                {{ activity.monday }}
+        
+        </td>
+        <td class="w-10">
+            
+                {{ activity.tuesday }}
+            
+        </td>
+       
+        <td class="w-10">
+            
+                {{ activity.wednesday }}
+          
+        </td>
+        <td class="w-10">
+            
+                {{ activity.thursday }}
+          
+        </td>
+        <td>
+            
+                {{ activity.friday }}
+        
+        </td>
+        <td class="w-10">
+            
+                {{ activity.saturday }}
+            
+        </td>
+        <td class="w-10">
+           
+                {{ activity.sunday  }} 
+           
+        </td>
+        <td class="w-10">
+           
+                {{ activity.pub_date }}
+          
+        </td>
+        <td class="w-10">
+          
+                {{ activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday }}/100
+            
+        </td>
+      
+        <td class="w-10">
+        {% if activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 70 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 100 %}
+              
+        <p> A</p> 
+
+        {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 60 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 69 %}
+              
+        <p> B</p> 
+
+        {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 50 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 59 %}
+              
+        <p> C</p> 
+        
+        {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 45 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 49 %}
+              
+        <p> D </p> 
+        
+        {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday %}
+              
+        <p> F </p> 
+        
+        {% endif %}
+
+        </td>
+       
+        <td>
+                {% if activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 70 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 100 %}
+                      
+                <p> Distinction </p> 
+        
+                {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 60 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 69 %}
+                      
+                <p> Excellence</p> 
+        
+                {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 50 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 59 %}
+                      
+                <p> Credit</p> 
+                
+                {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 45 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 49 %}
+                      
+                <p> Pass </p> 
+                
+                {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday %}
+                      
+                <p> Fail </p> 
+                
+                {% endif %}
+        
+                </td>
+               
+      {% if perms.studentreg.change_Salat %}
+
+        <td>
+            <a href="{% url 'edit' activity.id %}">Edit </a> 
+        </td>
+        {% else %}
+        <td>
+                <a href="#">Edit </a> 
+            </td>
+        {% endif %}
+
+        {% if perms.studentreg.delete_Salat %}
+
+        <td>
+                <a href="{% url 'delete' activity.id %}" class="text-danger">Delete </a> 
+        </td>
+        {% else %}
+
+        <td>
+        <a href="#">Delete </a> 
+        </td>
+        
+        {% endif %}
+
+        <td>
+           
+           
+        </td>
+
+        </tr>
+        </div>
+    </tbody>
+
+    {% endfor %}
+
+</table>
+<div class="text-center"></div>
+<a href="{% url 'generatepdf' %}">Download to pdf</a>
+</div>
+</div>
+</div>
+
+       
+
+        
+       
+
+
+ {% endblock %}
+

@@ -1,0 +1,24 @@
+{% extends 'studentreg/base.html' %}
+
+{% block title %} delete page {% endblock %}
+
+
+ {% block body %}
+
+ <div class="text-center col-red">
+
+
+<p class="text-danger"> are you sure you want to delete student with the name: {{item}} ?</p>
+
+
+<form action="" method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+
+
+<button class="btn btn-primary" type="submit">Delete</button>
+</form>
+  
+<hr>
+<a href="{% url 'home' %}">Cancel</a>
+</div>
+ {% endblock %}

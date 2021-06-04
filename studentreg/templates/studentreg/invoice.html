@@ -1,0 +1,328 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>Title</title>
+        <style type="text/css">
+            body {
+                font-weight: 200;
+                font-size: 14px;
+            }
+            .header {
+                font-size: 20px;
+                font-weight: 100;
+                text-align: center;
+                color: #007cae;
+            }
+            .title {
+                font-size: 22px;
+                font-weight: 100;
+               /* text-align: right;*/
+               padding: 10px 20px 0px 20px;  
+            }
+            .title span {
+                color: #007cae;
+            }
+            .details {
+                padding: 10px 20px 0px 20px;
+                text-align: left !important;
+                /*margin-left: 40%;*/
+            }
+            .hrItem {
+                border: none;
+                height: 1px;
+                /* Set the hr color */
+                color: #333; /* old IE */
+                background-color: #fff; /* Modern Browsers */
+            }
+        </style>
+        <style>
+            table { -pdf-keep-with-next: true; }
+            p { margin: 0; -pdf-keep-with-next: true; }
+            p.separator { -pdf-keep-with-next: false; font-size: 6pt; }
+        </style>
+    </head>
+    <body>
+    
+
+{% load mathfilters %}
+
+{% block title %} prep page {% endblock %}
+
+
+ {% block body %}
+ 
+ <div class="contener bg-primary text-white  d-flex " style="width: 100%;">
+
+        <p class="flex-fill ">Students' Attitude </p>
+        <p class="flex-fill ">Number of Records in Students' Attitudes: {{activities.count }}</p>
+        <p class="flex-fill ">Welcome, {{ request.user }}</p>
+</div>
+
+<hr>
+<div class = "container d-flex bg-secondary text-white">
+
+<form action = "" method = "get" enctype="multipart/form-data" class = "d-flex" >
+
+        {% csrf_token %}
+        
+        {{myfilter.form}}
+        
+        <button class = 'btn btn-primary'> Search Result </button> 
+
+</form>
+
+        
+</div>
+<hr>
+
+
+
+
+
+<div class ="container mb-5 mt-3">
+<div class = " card card-boby">
+
+
+<table class="table-md table-responsive ">
+  
+
+    <thead class="bg-primary text-white ">
+        <tr >
+            <th>
+           
+             Names 
+         
+            </th>
+
+            <th>
+             
+             Class 
+          
+            </th>
+            <th>
+             
+             Term
+          
+            </th>
+
+            <th>
+        
+            Week 
+         
+            </th>
+            <th>
+          
+            Attitudes
+       
+            <th>
+                
+            Mon
+         
+            </th>
+
+            <th>
+              
+            Tue 
+           
+            </th>
+            <th>
+             
+            Wed
+           
+            </th>
+
+            <th>
+              
+            Thur 
+          
+            </th>
+            <th>
+                
+            Fri
+        
+            </th>
+
+            <th>
+               
+            Sat
+           
+            </th>
+            <th>
+               
+            Sun
+           
+            </th>
+
+            <th>
+               
+           Date 
+           
+            </th>
+            <th>
+           
+           Total 
+           
+            </th>
+
+            <th>
+            
+            Grade
+           
+            </th>
+
+           <th>
+            
+            Comments
+               
+            </th>
+       
+        </tr>
+
+    </thead>
+
+    <div class="card-boby">
+    {% for activity in activities %}
+    <tbody class="">
+        <tr>
+        <td class="w-10">
+         
+                {{ activity.names }} 
+           
+        </td>
+        <td class="w-10">
+           
+                {{ activity.lavel }}
+            
+        </td>
+        <td class="w-10">
+           
+                {{activity.term}}
+           
+        </td>
+        <td class="w-10">
+           
+                {{ activity.week }}
+           
+        </td>
+        <td class="w-10">
+           
+                {{ activity.attitudes }}
+          
+        </td>
+        <td class="w-10">
+        
+                {{ activity.monday }}
+        
+        </td>
+        <td class="w-10">
+            
+                {{ activity.tuesday }}
+            
+        </td>
+       
+        <td class="w-10">
+            
+                {{ activity.wednesday }}
+          
+        </td>
+        <td class="w-10">
+            
+                {{ activity.thursday }}
+          
+        </td>
+        <td>
+            
+                {{ activity.friday }}
+        
+        </td>
+        <td class="w-10">
+            
+                {{ activity.saturday }}
+            
+        </td>
+        <td class="w-10">
+           
+                {{ activity.sunday  }} 
+           
+        </td>
+        <td class="w-10">
+           
+                {{ activity.pub_date }}
+          
+        </td>
+        <td class="w-10">
+          
+                {{ activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday }}/100
+            
+        </td>
+      
+        <td class="w-10">
+        {% if activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 70 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 100 %}
+              
+        <p> A</p> 
+
+        {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 60 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 69 %}
+              
+        <p> B</p> 
+
+        {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 50 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 59 %}
+              
+        <p> C</p> 
+        
+        {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 45 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 49 %}
+              
+        <p> D </p> 
+        
+        {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday %}
+              
+        <p> F </p> 
+        
+        {% endif %}
+
+        </td>
+       
+        <td>
+                {% if activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 70 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 100 %}
+                      
+                <p> Distinction </p> 
+        
+                {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 60 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 69 %}
+                      
+                <p> Excellence</p> 
+        
+                {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 50 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 59 %}
+                      
+                <p> Credit</p> 
+                
+                {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 45 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 49 %}
+                      
+                <p> Pass </p> 
+                
+                {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday %}
+                      
+                <p> Fail </p> 
+                
+                {% endif %}
+        
+                </td>
+               
+      
+      
+        </tr>
+        </div>
+    </tbody>
+    
+    {% endfor %}
+
+</table>
+</div>
+</div>
+
+<a href="{% url 'generatepdf'  %}">pdf</a>
+    <p> {{name}} </p>
+
+ {% endblock %}
+
+
+    </body>
+</html>
