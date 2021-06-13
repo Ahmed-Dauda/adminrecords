@@ -178,15 +178,6 @@ def add_view(request):
 #     return render(request, 'studentreg/editall.html', context)
 
 
-from django.http import HttpResponse
-from io import BytesIO
-from reportlab.pdfgen import canvas
-
-
-import io
-from django.http import FileResponse
-from reportlab.pdfgen import canvas
-
 # def generatepdf(request):
 #      Create a file-like buffer to receive PDF data.
 #     buffer = io.BytesIO()
