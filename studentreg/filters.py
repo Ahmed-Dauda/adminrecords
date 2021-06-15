@@ -16,6 +16,5 @@ class Salatfilter(django_filters.FilterSet):
         fields = {
             'names':['icontains'],
             'lavel':['iexact'],
-            'week':['iexact'],
-            'pub_date':['month']
+            'week':['iexact']  
         }
