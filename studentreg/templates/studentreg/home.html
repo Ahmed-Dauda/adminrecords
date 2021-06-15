@@ -3,7 +3,7 @@
 {% load mathfilters %}
 
 {% block title %} home page {% endblock %}
-
+      
 
  {% block body %}
 
@@ -16,17 +16,16 @@
 
 <hr>
 
-
-        <form action = "" method = "get" enctype="multipart/form-data" >
+       <div class="card form-control text-center">
+        <form  action = "" method = "get" enctype="multipart/form-data" >
 
         {% csrf_token %}
         
-        {{myfilter.form.as_p}}
-        
+      {{myfilter.form.as_p}}
+
         <button class = 'btn btn-primary'> Search Result </button> 
-
         </form>
-
+        </div>
         <hr>
 
 

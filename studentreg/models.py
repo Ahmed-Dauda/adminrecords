@@ -15,29 +15,29 @@ class Salat(models.Model):
     ]
 
     term_choices = [
-        ('FIRST', 'FIRST'),
-        ('SECOND', 'SECOND'),
-        ('THIRD', 'THIRD')
+        ('First', 'First'),
+        ('Second', 'Second'),
+        ('Third', 'Third')
       
        
     ]
 
     week_choices = [
-        ('WEEK1', 'WEEK1'),
-        ('WEEK2', 'WEEK2'),
-        ('WEEK3', 'WEEK3')
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3')
       
        
     ]
 
     attitudes_choices = [
-        ('SALAT', 'SALAT'),
-        ('DINING', 'DINING'),
-        ('LIGHT OUT', 'LIGHT OUT'),
-        ('HYGIENE', 'HYGIENE'),
-        ('DRESS CODE', 'DRESS CODE'),
-        ('PREP CLASS', 'PREP CLASS'),
-        ('ADMIN/STUDENTS', 'ADMIN/STUDENTS '),
+        ('Salat', 'Salat'),
+        ('Dining', 'Dining'),
+        ('Light Out', 'Light Out'),
+        ('Hygiene', 'Hygiene'),
+        ('Dress Code', 'Dress Code'),
+        ('Prep Class', 'Prep Class'),
+        ('Admin/Students', 'Admin/Students '),
 
        
     ]

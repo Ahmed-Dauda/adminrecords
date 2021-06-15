@@ -8,7 +8,7 @@
  <div class="text-center col-red">
 
 
-<p class="text-danger"> are you sure you want to delete student with the name: {{item}} ?</p>
+<p style="padding: 20px;" class=""> are you sure you want to delete student with the name: {{item}} ?</p>
 
 
 <form action="" method="POST" enctype="multipart/form-data">
@@ -17,8 +17,7 @@
 
 <button class="btn btn-primary" type="submit">Delete</button>
 </form>
-  
 <hr>
-<a href="{% url 'home' %}">Cancel</a>
+<button><a href="{% url 'home' %}">Cancel</a></button>
 </div>
  {% endblock %}
