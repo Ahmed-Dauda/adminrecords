@@ -7,7 +7,7 @@
 
  {% block body %}
 
- <div class="contener bg-primary text-white  d-flex " style="width: 100%;">
+ <div class="contener bg-primary p-20  d-flex " style="width: 100%;font-size: 16px;">
 
         <p class="flex-fill ">Students' Attitude </p>
         <p class="flex-fill ">Number of Records in Students' Attitudes: {{activities.count }}</p>
@@ -16,7 +16,7 @@
 
 <hr>
 
-       <div class="card form-control text-center">
+       <div class="card form-control text-center ">
         <form  action = "" method = "get" enctype="multipart/form-data" >
 
         {% csrf_token %}
@@ -28,8 +28,10 @@
         </div>
         <hr>
 
-
-<a href="{% url 'generatepdf' %}">Download to pdf</a>
+<div class="text-center">
+<button ><a href="{% url 'generatepdf' %}">Download to pdf</a></button>
+<button><a href="http://esteemadmin.herokuapp.com/admin/studentreg/salat/add/">Add Records</a></button>
+</div>
 <hr>
 <div class="table-responsive ">
 <table class="table table-bordered  ">
