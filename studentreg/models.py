@@ -59,7 +59,7 @@ class Salat(models.Model):
       
      
     def __str__(self):
-       return f'{self.names} {self.lavel} {self.term}{self.week} {self.attitudes} {self.monday} {self.tuesday} {self.wednesday} {self.friday} {self.saturday} {self.sunday}'
+       return f'{self.names} {self.lavel}'
 
 
 class Dining(models.Model):
