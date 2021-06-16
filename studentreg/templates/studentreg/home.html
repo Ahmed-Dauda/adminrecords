@@ -7,10 +7,10 @@
 
  {% block body %}
 
- <div class="contener bg-primary p-20  d-flex " style="width: 100%;font-size: 16px;">
+ <div class=" card-header border-danger contener bg-primary  p-16  d-flex " style="width: 100%;font-size: 16px;">
 
-        <p class="flex-fill ">Students' Attitude </p>
-        <p class="flex-fill ">Number of Records in Students' Attitudes: {{activities.count }}</p>
+        <h1 class="flex-fill ">Students' Attitude </h1>
+        <h6 class="flex-fill ">Number of Records: {{activities.count }}</h6>
         <p class="flex-fill ">Welcome, {{ request.user }}</p>
 </div>
 
