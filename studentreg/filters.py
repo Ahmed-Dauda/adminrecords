@@ -15,6 +15,6 @@ class Salatfilter(django_filters.FilterSet):
 
         fields = {
             'names':['icontains'],
-            
+            'attitudes':['icontains'],
             'week':['iexact']  
         }
