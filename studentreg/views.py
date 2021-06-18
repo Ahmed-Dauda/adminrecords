@@ -297,7 +297,7 @@ def generatepdf(request):
     }
 
    
-    pdf = render_to_pdf('studentreg/prep.html', context)
+    pdf = render_to_pdf('studentreg/pdf_all.html', context)
 	        
     return HttpResponse(pdf, content_type='application/pdf')
 

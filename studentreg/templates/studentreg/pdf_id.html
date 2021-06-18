@@ -7,13 +7,17 @@
     <title>pdf page</title>
     <style>
         @page template{
-            size: a4 landscape; 
+            size: a4 portrait; 
         }
-       
+        @page {
+            background-image: url(bg.pdf); 
+        }
+  
         tr, td{
             border: ipx dotted rgb(27, 37, 27);
         }
         table{
+            -pdf--pdf-keep-in-frame-mode: shrink;
             border-collapse: collapse;
             text-align: center;
             width: 100%;
@@ -21,12 +25,13 @@
             margin-right: 20px;
         }
         th{
-            padding: 10px;
+            padding: 10px 20px 0px 20px;
+            font-size: 12px;
             
         }
-        td{
-            padding-left: 10px;
-            padding-right: 10px;
+        tr{
+            padding-left: 20px;
+            padding-right: 20px;
         }
         h1{
             text-align: center; 
@@ -45,7 +50,7 @@
     <h2>Names of the Student: {{activity.names}}</h2>
         {% endfor %}
     <div class="table-responsive ">
-        <table style="-pdf-keep-in-frame-mode:none;" class="table table-bordered  ">
+        <table class="table table-bordered  ">
                 <thead >
                        <tr class = 'bg-primary mr-0'>
                                 <th scope="col">Names</th>
