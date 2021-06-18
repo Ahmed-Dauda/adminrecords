@@ -59,9 +59,8 @@ class Salat(models.Model):
       
      
     def __str__(self):
-       return f'{self.names} {self.lavel}'
-
-
+       return self.names
+       
 class Dining(models.Model):
 
     lavel_choices = [

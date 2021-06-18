@@ -29,10 +29,11 @@
         <hr>
 
 <div class="text-center">
-<button ><a href="{% url 'generatepdf' %}">Download to pdf</a></button>
+<button ><a href="{% url 'generatepdf' %}">Download All Records</a></button>
 <button><a href="http://esteemadmin.herokuapp.com/admin/studentreg/salat/add/">Add Records</a></button>
 </div>
 <hr>
+
 <div class="table-responsive ">
 <table class="table table-bordered  ">
         <thead >
@@ -55,9 +56,11 @@
                         <th scope="col">Comments</th>
                         <th scope="col">Edit post</th>
                         <th scope="col">Delete Post</th>
+                        <th scope="col">Download</th>
                 </tr>
         </thead>
         <tbody>
+
                 {% for activity in activities %}
                 <tr>
                 <td scope = 'row'>{{ activity.names }}</td>
@@ -111,10 +114,11 @@
 {% if perms.studentreg.delete_Salat %}
 <td><a href="{% url 'delete' activity.id %}" class="text-danger">Delete </a></td>
 
+<td><a href="{% url 'pdf_render' activity.pk %}">download</a></td>
                         {% else %}
 <td><a href="#">Delete </a></td>
 {% endif %}
-<td></td>
+
                 
                 </tr>
                 </div>
@@ -123,5 +127,6 @@
         
 </table>
 </div>
+
  {% endblock %}
 

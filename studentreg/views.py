@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 
 from studentreg.models import Salat, Dining, Lightout, Prep, Hygiene
 
@@ -303,44 +303,65 @@ def generatepdf(request):
 
 
 def generate(request):
- 
 
-   
-    pdf = render_to_pdf('studentreg/edit.html')
-	        
+    pdf = render_to_pdf('studentreg/edit.html')       
     return HttpResponse(pdf, content_type='application/pdf')
 
-# from docx import Document
+# download by id
 
-# def generatedoc(request):
+
+from django.conf import settings
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from django.contrib.staticfiles import finders
+
+def salat_render_pfd(request, *args, **kwargs):
     
-   
-#     activities = Salat.objects.order_by('-pub_date')
+    #return HttpResponse('testing my project')
+    #activities = Salat.objects.order_by('-pub_date')
+    pk = kwargs.get('pk')
+    post = get_list_or_404(Salat, pk = pk)
+    template_path = 'studentreg/pdf_id.html'
+    context = {
+        'activities':post
+        #'activities':activities
+        }
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="report.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
 
-#     myfilter = Salatfilter(request.GET, queryset= activities)
-#     activities = myfilter.qs
-   
-#     document = Document()
-#     p = document.add_heading('codethinkers')
-#     for activity in activities:
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funy view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+    
+def render_pdf_view_id(request):
+    #activities = Salat.objects.order_by('-pub_date')
+    #pk = kwargs.get('pk')
+    #posts = get_object_or_404(Salat, pk=pk)
+    template_path = 'studentreg/pdf_id.html'
+    context = {
+        'myvar': 'posts'
+        #'activities':activities
+        }
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="report.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
 
-#         document.add_paragraph(str(activity)) 
-#         #document.add_page_break()
-       
-#     response = HttpResponse(content_type = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')
-
-#     response['Content-Disposition'] = "attachment; filename = 'doc.docx' "
-
-#     document.save(response)
-#     return response
-
-    # context = {
-    #     'activities': p,
-    #     'myfilter':myfilter  
-    # }
-
-   
-    # pdf = render_to_pdf('studentreg/prep.html', context)
-	        
-    # return HttpResponse(pdf, content_type='application/pdf')
-
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funy view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response

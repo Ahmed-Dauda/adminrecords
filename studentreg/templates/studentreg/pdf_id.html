@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pdf page</title>
+    <style>
+        @page{
+            size: a4;
+        }
+        @frame header{
+            -pdf-frame-content: headerContent;
+            margin-left: 1cm;
+            margin-right: 1cm;
+        }
+        tr, td{
+            border: ipx dotted rgb(27, 37, 27);
+        }
+        table{
+            border-collapse: collapse;
+            text-align: center;
+            width: 100%;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        th{
+            padding: 10px;
+            
+        }
+        td{
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        h1{
+            text-align: center; 
+            font-size: 20px;
+            padding: 20px;
+        }
+        h2{
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Esteem Learning Center, Abuja</h1>
+    {% for activity in activities %}
+    <h2>Names of the Student: {{activity.names}}</h2>
+        {% endfor %}
+
+<hr>
+    <div class="table-responsive ">
+        <table style="-pdf-keep-in-frame-mode:none;" class="table table-bordered  ">
+                <thead >
+                       <tr class = 'bg-primary mr-0'>
+                                <th scope="col">Names</th>
+                                <th scope="col">Class</th>
+                                <th scope="col">Term</th>
+                                <th scope="col">Week</th>
+                                <th scope="col">Attitudes
+                                <th scope="col">Mon</th>
+                                <th scope="col">Tue</th>
+                                <th scope="col">Wed</th>
+                                <th scope="col">Thur</th>
+                                <th scope="col">Fri</th>
+                                <th scope="col">Sat</th>
+                                <th scope="col">Sun</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Total</th>
+                                <th scope="col">Grade</th>
+                                <th scope="col">Remark</th>
+                                
+                        </tr>
+                </thead>
+                <tbody>
+        
+                        {% for activity in activities %}
+                        <tr>
+                        <td scope = 'row'>{{ activity.names }}</td>
+                        <td >{{ activity.lavel }}</td>
+                        <td >{{activity.term}}</td>
+                        <td >{{ activity.week }}</td>
+                        <td >{{ activity.attitudes }}</td>
+                        <td >{{ activity.monday }}</td>
+                        <td >{{ activity.tuesday }}</td>
+                        <td >{{ activity.wednesday }}</td>
+                        <td >{{ activity.thursday }}</td>
+                        <td>{{ activity.friday }}</td>
+                        <td >{{ activity.saturday }}</td>
+                        <td >{{ activity.sunday }}</td>
+                        <td >{{ activity.pub_date }}</td>
+        
+        <td >{{ activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday }}/100</td>
+        <td>{% if activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 70 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 100 %} 
+        <p> A</p>
+        {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 60 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 69 %} 
+        <p> B</p>
+        {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 50 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 59 %} 
+        <p> C</p>
+        {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 45 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 49 %} 
+        <p> D </p>
+        {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday %}
+        <p> F </p>
+                        
+        {% endif %}
+        </td>
+        
+        <td>{% if activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 70 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 100 %} 
+        <p> Distinction </p>
+        {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 60 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 69 %} 
+        <p> Excellence</p>
+        {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 50 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 59 %} 
+        <p> Credit</p>
+        {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday >= 45 and activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday <= 49 %} 
+        <p> Pass </p>
+        {% elif activity.monday|add:activity.tuesday|add:activity.wednesday|add:activity.thursday|add:activity.friday|add:activity.saturday|add:activity.sunday %}
+        <p> Fail </p>
+        {% endif %}
+        
+      
+       
+                        </tr>
+                        </div>
+                        {% endfor %}
+                </tbody>
+                
+        </table>
+        </div>
+        
+      <!-- {% for post in myvar %}
+    <p>{{post.names}}</p>
+    <p>{{post.lavel}}</p>
+    <p>{{post.term}}</p>
+    <p>{{post.week}}</p>
+    <p>{{post.attitudes}}</p>
+    <p>{{post.monday}}</p>
+    <p>{{post.tuesday}}</p>
+    <p>{{post.wednesday}}</p>
+    <p>{{post.thursday}}</p>
+    <p>{{post.friday}}</p>
+    <p>{{post.saturday}}</p>
+    <p>{{post.sunday}}</p>
+    <p>{{ post.pub_date }}</p>
+    {% endfor %}
+   
+
+    <p>{{myvar.names}}</p>
+    <p>{{myvar.lavel}}</p>
+   -->
+</body>
+</html>
