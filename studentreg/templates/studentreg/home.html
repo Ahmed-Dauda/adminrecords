@@ -6,12 +6,20 @@
       
 
  {% block body %}
-
- <div class=" card-header border-danger contener bg-primary  p-16  d-flex " style="width: 100%;font-size: 16px;">
-
+<div class="  title card-body bg-primary text-white border-danger text-center">   
         <h1 class="flex-fill ">Students' Attitude </h1>
         <h6 class="flex-fill ">Number of Records: {{activities.count }}</h6>
-        <p class="flex-fill ">Welcome, {{ request.user }}</p>
+</div>
+<hr>
+ <div class=" head text-white card-header border-black contener bg-primary  " style="width: 100%;font-size: 16px;">
+        {% if user.is_authenticated %}
+        <p class="flex-fill ">Welcome, {{ user.username }}</p>
+        <p class="flex-fill ">Firs Name: {{ user.first_name }}</p>
+        <p class="flex-fill ">Last Name: {{ user.last_name }}</p>
+        <p class="flex-fill ">Email: {{ user.email }}</p>
+       
+        {% endif %}
+       
 </div>
 
 <hr>
@@ -28,7 +36,7 @@
       
         <hr>
 
-<div class="text-center">
+<div class="text-center ">
 <button ><a href="{% url 'generatepdf' %}">Download All Records</a></button>
 <button><a href="http://esteemadmin.herokuapp.com/admin/studentreg/salat/add/">Add Records</a></button>
 </div>
@@ -37,7 +45,7 @@
 <div class="table-responsive ">
 <table class="table table-bordered  ">
         <thead >
-               <tr class = 'bg-primary mr-0'>
+               <tr class = 'bg-primary text-white'>
                         <th scope="col">Names</th>
                         <th scope="col">Class</th>
                         <th scope="col">Term</th>
