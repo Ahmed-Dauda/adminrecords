@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'studentreg',
     'mathfilters',
     'django_filters',
+    'widget_tweaks',
     
 ]
 

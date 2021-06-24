@@ -1,1 +1,22 @@
 
+.head{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.head>*{
+    flex: 1 1 auto;
+    margin: 5px;
+    border: 1px dotted white;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.title>*{
+    flex: 1 1 auto;
+    margin: 5px;
+    border: 1px dotted black;
+}
